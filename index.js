@@ -5,7 +5,8 @@ module.exports = (function () {
 
   var _super = require('./lib/createHelpers').createSuper(Dirent);
   function DirentFromStats(name, stats) {
-    var _this = _super.call(this, name, null);
+    var _this = _super.call(this);
+    _this.name = name;
     _this[kStats] = stats;
     return _this;
   }
