@@ -49,9 +49,11 @@ describe('DirentFromStats', function () {
         assert.ok(!err);
 
         for (var index in dirents) {
-          spys(dirents[index]);
-          assert.ok(dirents[index] instanceof DirentBase);
-          assert.ok(!fs.Dirent || dirents[index] instanceof fs.Dirent);
+          var dirent = dirents[index];
+          spys(dirent);
+          assert.ok(dirent instanceof DirentBase);
+          assert.ok(!fs.Dirent || dirent instanceof fs.Dirent);
+          assert.equal(dirent.name, names[index]);
         }
         assert.equal(spys.callCount, 6);
         assert.equal(spys.dir.callCount, 3);
@@ -64,6 +66,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_DIR', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_DIR);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), true);
     assert.equal(dirent.isFile(), false);
     assert.equal(dirent.isBlockDevice(), false);
@@ -75,6 +78,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_FILE', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_FILE);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), true);
     assert.equal(dirent.isBlockDevice(), false);
@@ -86,6 +90,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_BLOCK', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_BLOCK);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
     assert.equal(dirent.isBlockDevice(), true);
@@ -97,6 +102,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_CHAR', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_CHAR);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
     assert.equal(dirent.isBlockDevice(), false);
@@ -108,6 +114,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_LINK', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_LINK);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
     assert.equal(dirent.isBlockDevice(), false);
@@ -119,6 +126,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_FIFO', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_FIFO);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
     assert.equal(dirent.isBlockDevice(), false);
@@ -130,6 +138,7 @@ describe('DirentFromStats', function () {
 
   it('should create dirents by UV_DIRENT_SOCKET', function () {
     var dirent = new DirentBase('name', constants.UV_DIRENT_SOCKET);
+    assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
     assert.equal(dirent.isBlockDevice(), false);
