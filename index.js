@@ -1,38 +1,39 @@
 var Dirent = require('./lib/Dirent');
-var createHelpers = require('./lib/createHelpers');
 
 module.exports = (function () {
+  var kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
+
+  var _super = require('./lib/createHelpers').createSuper(Dirent);
   function DirentFromStats(name, stats) {
-    var _this;
-    createHelpers.classCallCheck(this, DirentFromStats);
-    _this = _super.call(this, name, null);
-    _this.stats = stats;
+    var _this = _super.call(this, name, null);
+    _this[kStats] = stats;
     return _this;
   }
-  var _super = createHelpers.createSuper(DirentFromStats);
-  createHelpers.inherits(DirentFromStats, Dirent);
+  DirentFromStats.prototype = Object.create(Dirent.prototype);
+  DirentFromStats.prototype.constructor = DirentFromStats;
+
   DirentFromStats.DirentBase = Dirent;
 
   DirentFromStats.prototype.isDirectory = function isDirectory() {
-    return this.stats.isDirectory();
+    return this[kStats].isDirectory();
   };
   DirentFromStats.prototype.isFile = function isFile() {
-    return this.stats.isFile();
+    return this[kStats].isFile();
   };
   DirentFromStats.prototype.isBlockDevice = function isBlockDevice() {
-    return this.stats.isBlockDevice();
+    return this[kStats].isBlockDevice();
   };
   DirentFromStats.prototype.isCharacterDevice = function isCharacterDevice() {
-    return this.stats.isCharacterDevice();
+    return this[kStats].isCharacterDevice();
   };
   DirentFromStats.prototype.isSymbolicLink = function isSymbolicLink() {
-    return this.stats.isSymbolicLink();
+    return this[kStats].isSymbolicLink();
   };
   DirentFromStats.prototype.isFIFO = function isFIFO() {
-    return this.stats.isFIFO();
+    return this[kStats].isFIFO();
   };
   DirentFromStats.prototype.isSocket = function isSocket() {
-    return this.stats.isSocket();
+    return this[kStats].isSocket();
   };
   return DirentFromStats;
 })();

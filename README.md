@@ -21,7 +21,6 @@ function create(root, name, callback) {
 fs.readdir(__dirname, function (err, names) {
   each(names, create.bind(null, DIR), function (err, dirents) {
     for (var index in dirents) {
-      spys(dirents[index]);
       assert.ok(dirents[index] instanceof DirentBase);
       assert.ok(!fs.Dirent || dirents[index] instanceof fs.Dirent);
     }
