@@ -8,6 +8,7 @@ var each = require('async-each');
 
 var DirentFromStats = require('../..');
 var DirentBase = DirentFromStats.DirentBase;
+var constants = require('../../lib/constants');
 
 var DIR = path.resolve(path.join(__dirname, '..', 'data'));
 var STRUCTURE = {
@@ -59,5 +60,82 @@ describe('DirentFromStats', function () {
         done();
       });
     });
+  });
+
+  it('should create dirents by UV_DIRENT_DIR', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_DIR);
+    assert.equal(dirent.isDirectory(), true);
+    assert.equal(dirent.isFile(), false);
+    assert.equal(dirent.isBlockDevice(), false);
+    assert.equal(dirent.isCharacterDevice(), false);
+    assert.equal(dirent.isSymbolicLink(), false);
+    assert.equal(dirent.isFIFO(), false);
+    assert.equal(dirent.isSocket(), false);
+  });
+
+  it('should create dirents by UV_DIRENT_FILE', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_FILE);
+    assert.equal(dirent.isDirectory(), false);
+    assert.equal(dirent.isFile(), true);
+    assert.equal(dirent.isBlockDevice(), false);
+    assert.equal(dirent.isCharacterDevice(), false);
+    assert.equal(dirent.isSymbolicLink(), false);
+    assert.equal(dirent.isFIFO(), false);
+    assert.equal(dirent.isSocket(), false);
+  });
+
+  it('should create dirents by UV_DIRENT_BLOCK', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_BLOCK);
+    assert.equal(dirent.isDirectory(), false);
+    assert.equal(dirent.isFile(), false);
+    assert.equal(dirent.isBlockDevice(), true);
+    assert.equal(dirent.isCharacterDevice(), false);
+    assert.equal(dirent.isSymbolicLink(), false);
+    assert.equal(dirent.isFIFO(), false);
+    assert.equal(dirent.isSocket(), false);
+  });
+
+  it('should create dirents by UV_DIRENT_CHAR', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_CHAR);
+    assert.equal(dirent.isDirectory(), false);
+    assert.equal(dirent.isFile(), false);
+    assert.equal(dirent.isBlockDevice(), false);
+    assert.equal(dirent.isCharacterDevice(), true);
+    assert.equal(dirent.isSymbolicLink(), false);
+    assert.equal(dirent.isFIFO(), false);
+    assert.equal(dirent.isSocket(), false);
+  });
+
+  it('should create dirents by UV_DIRENT_LINK', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_LINK);
+    assert.equal(dirent.isDirectory(), false);
+    assert.equal(dirent.isFile(), false);
+    assert.equal(dirent.isBlockDevice(), false);
+    assert.equal(dirent.isCharacterDevice(), false);
+    assert.equal(dirent.isSymbolicLink(), true);
+    assert.equal(dirent.isFIFO(), false);
+    assert.equal(dirent.isSocket(), false);
+  });
+
+  it('should create dirents by UV_DIRENT_FIFO', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_FIFO);
+    assert.equal(dirent.isDirectory(), false);
+    assert.equal(dirent.isFile(), false);
+    assert.equal(dirent.isBlockDevice(), false);
+    assert.equal(dirent.isCharacterDevice(), false);
+    assert.equal(dirent.isSymbolicLink(), false);
+    assert.equal(dirent.isFIFO(), true);
+    assert.equal(dirent.isSocket(), false);
+  });
+
+  it('should create dirents by UV_DIRENT_SOCKET', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_SOCKET);
+    assert.equal(dirent.isDirectory(), false);
+    assert.equal(dirent.isFile(), false);
+    assert.equal(dirent.isBlockDevice(), false);
+    assert.equal(dirent.isCharacterDevice(), false);
+    assert.equal(dirent.isSymbolicLink(), false);
+    assert.equal(dirent.isFIFO(), false);
+    assert.equal(dirent.isSocket(), true);
   });
 });
