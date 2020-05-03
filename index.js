@@ -1,4 +1,5 @@
 var Dirent = require('./lib/Dirent');
+var constants = require('./lib/constants');
 
 module.exports = (function () {
   var kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
@@ -14,6 +15,7 @@ module.exports = (function () {
   DirentFromStats.prototype.constructor = DirentFromStats;
 
   DirentFromStats.DirentBase = Dirent;
+  DirentFromStats.constants = constants;
 
   DirentFromStats.prototype.isDirectory = function isDirectory() {
     return this[kStats].isDirectory();
