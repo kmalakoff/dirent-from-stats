@@ -27,7 +27,9 @@
   "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
   "license": "MIT",
   "homepage": "https://github.com/kmalakoff/dirent-from-stats",
-  "dependencies": {},
+  "dependencies": {
+    "legacy-extends": "^0.2.1"
+  },
   "devDependencies": {
     "async-each": "^1.0.3",
     "babel-eslint": "^10.1.0",
