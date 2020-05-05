@@ -6,14 +6,11 @@ var constants = require('./lib/constants');
 var kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
 
 function DirentFromStats(name, stats) {
-  var self = DirentFromStats.__constructor__.call(this, name);
+  var self = DirentFromStats.__super__.construct.call(this, name);
   self[kStats] = stats;
   return self;
 }
 extend(DirentFromStats, Dirent, ['name']);
-
-DirentFromStats.prototype = Object.create(Dirent.prototype);
-DirentFromStats.prototype.constructor = DirentFromStats;
 
 DirentFromStats.DirentBase = Dirent;
 DirentFromStats.constants = constants;
