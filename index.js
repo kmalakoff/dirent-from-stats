@@ -10,7 +10,7 @@ function DirentFromStats(name, stats) {
   self[kStats] = stats;
   return self;
 }
-extend(DirentFromStats, Dirent, ['name']);
+extend(DirentFromStats, Dirent, { ensureProperties: ['name'] });
 
 DirentFromStats.DirentBase = Dirent;
 DirentFromStats.constants = constants;
