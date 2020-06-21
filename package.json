@@ -1,6 +1,6 @@
 {
   "name": "dirent-from-stats",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Create fs.Dirents from fs.Stats for compatiblity on earlier versions of Node.js",
   "keywords": [
     "dirent",
@@ -25,7 +25,8 @@
     "test": "mocha-compat test/spec/**/*.test.js"
   },
   "dependencies": {
-    "legacy-extends": "^0.4.0"
+    "fs-constants": "^1.0.0",
+    "legacy-extends": "^1.0.0"
   },
   "devDependencies": {
     "async-each": "^1.0.3",
