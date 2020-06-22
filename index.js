@@ -6,7 +6,7 @@ var constants = require('./lib/constants');
 var kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
 
 function DirentFromStats(name, stats) {
-  var self = DirentFromStats.__super__.construct.call(this, name);
+  var self = DirentFromStats.superConstruct.call(this, name);
   self[kStats] = stats;
   return self;
 }
