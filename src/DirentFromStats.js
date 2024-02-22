@@ -1,18 +1,20 @@
+var fs = require('fs');
 var extend = require('legacy-extends');
 
-var Dirent = require('./Dirent');
+var DirentBase = require('./DirentBase');
 var constants = require('./constants');
 
 var kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
+var Base = fs.Dirent || DirentBase;
 
 function DirentFromStats(name, stats) {
   var self = DirentFromStats.superConstruct.call(this, name);
   self[kStats] = stats;
   return self;
 }
-extend(DirentFromStats, Dirent, { ensureProperties: ['name'] });
+extend(DirentFromStats, Base, { ensureProperties: ['name'] });
 
-DirentFromStats.DirentBase = Dirent;
+DirentFromStats.Dirent = Base;
 DirentFromStats.constants = constants;
 
 DirentFromStats.prototype.isDirectory = function isDirectory() {

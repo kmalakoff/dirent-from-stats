@@ -6,9 +6,7 @@ var fs = require('fs');
 var statsSpys = require('fs-stats-spys');
 var each = require('async-each');
 
-var DirentFromStats = require('../..');
-var DirentBase = DirentFromStats.DirentBase;
-var constants = require('../../lib/constants');
+var { constants, DirentFromStats, DirentBase } = require('dirent-from-stats');
 
 var TEST_DIR = path.resolve(path.join(__dirname, '..', '..', '.tmp', 'test'));
 var STRUCTURE = {
@@ -24,34 +22,34 @@ var STRUCTURE = {
 };
 
 function create(root, name, callback) {
-  return fs.lstat(path.join(root, name), function (err, stats) {
+  return fs.lstat(path.join(root, name), (err, stats) => {
     err ? callback(err) : callback(null, new DirentFromStats(name, stats));
   });
 }
 
-describe('DirentFromStats', function () {
-  after(function (done) {
+describe('DirentFromStats', () => {
+  after((done) => {
     rimraf(TEST_DIR, done);
   });
-  beforeEach(function (done) {
-    rimraf(TEST_DIR, function () {
+  beforeEach((done) => {
+    rimraf(TEST_DIR, () => {
       generate(TEST_DIR, STRUCTURE, done);
     });
   });
 
-  it('should load dirents', function (done) {
+  it('should load dirents', (done) => {
     var spys = statsSpys();
 
-    fs.readdir(TEST_DIR, function (err, names) {
+    fs.readdir(TEST_DIR, (err, names) => {
       assert.ok(!err);
 
-      each(names, create.bind(null, TEST_DIR), function (err, dirents) {
+      each(names, create.bind(null, TEST_DIR), (err, dirents) => {
         assert.ok(!err);
 
         for (var index in dirents) {
           var dirent = dirents[index];
           spys(dirent);
-          assert.ok(dirent instanceof DirentBase);
+          assert.ok(fs.Dirent || dirent instanceof DirentBase);
           assert.ok(!fs.Dirent || dirent instanceof fs.Dirent);
           assert.equal(dirent.name, names[index]);
         }
@@ -64,7 +62,7 @@ describe('DirentFromStats', function () {
     });
   });
 
-  it('should create dirents by UV_DIRENT_TEST_DIR', function () {
+  it('should create dirents by UV_DIRENT_TEST_DIR', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_TEST_DIR);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), true);
@@ -76,7 +74,7 @@ describe('DirentFromStats', function () {
     assert.equal(dirent.isSocket(), false);
   });
 
-  it('should create dirents by UV_DIRENT_FILE', function () {
+  it('should create dirents by UV_DIRENT_FILE', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_FILE);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
@@ -88,7 +86,7 @@ describe('DirentFromStats', function () {
     assert.equal(dirent.isSocket(), false);
   });
 
-  it('should create dirents by UV_DIRENT_BLOCK', function () {
+  it('should create dirents by UV_DIRENT_BLOCK', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_BLOCK);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
@@ -100,7 +98,7 @@ describe('DirentFromStats', function () {
     assert.equal(dirent.isSocket(), false);
   });
 
-  it('should create dirents by UV_DIRENT_CHAR', function () {
+  it('should create dirents by UV_DIRENT_CHAR', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_CHAR);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
@@ -112,7 +110,7 @@ describe('DirentFromStats', function () {
     assert.equal(dirent.isSocket(), false);
   });
 
-  it('should create dirents by UV_DIRENT_LINK', function () {
+  it('should create dirents by UV_DIRENT_LINK', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_LINK);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
@@ -124,7 +122,7 @@ describe('DirentFromStats', function () {
     assert.equal(dirent.isSocket(), false);
   });
 
-  it('should create dirents by UV_DIRENT_FIFO', function () {
+  it('should create dirents by UV_DIRENT_FIFO', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_FIFO);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
@@ -136,7 +134,7 @@ describe('DirentFromStats', function () {
     assert.equal(dirent.isSocket(), false);
   });
 
-  it('should create dirents by UV_DIRENT_SOCKET', function () {
+  it('should create dirents by UV_DIRENT_SOCKET', () => {
     var dirent = new DirentBase('name', constants.UV_DIRENT_SOCKET);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
