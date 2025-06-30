@@ -44,7 +44,7 @@
     "fs-stats-spys": "^1.0.2",
     
     "rimraf": "^2.7.1",
-    "ts-dev-stack": "^0.15.3"
+    "ts-dev-stack": "^1.18.2"
   },
   "engines": {
     "node": ">=0.8"
