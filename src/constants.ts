@@ -1,6 +1,6 @@
-var constants = require('fs-constants');
+import constants from 'fs-constants';
 
-module.exports = {
+export default {
   UV_DIRENT_UNKNOWN: constants.UV_DIRENT_UNKNOWN || 0,
   UV_DIRENT_FILE: constants.UV_DIRENT_FILE || 1,
   UV_DIRENT_TEST_DIR: constants.UV_DIRENT_TEST_DIR || 2,
