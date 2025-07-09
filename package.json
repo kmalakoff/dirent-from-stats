@@ -36,15 +36,15 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "fs-constants": "^1.0.0"
+    "fs-constants": "*"
   },
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
-    "async-each": "^1.0.6",
-    "fs-generate": "^1.10.0",
-    "fs-stats-spys": "^1.2.0",
-    "rimraf2": "^2.8.2"
+    "async-each": "*",
+    "fs-generate": "*",
+    "fs-stats-spys": "*",
+    "rimraf2": "*"
   },
   "engines": {
     "node": ">=0.8"
