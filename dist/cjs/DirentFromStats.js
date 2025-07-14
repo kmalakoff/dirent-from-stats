@@ -114,5 +114,5 @@ var DirentFromStats = /*#__PURE__*/ function(Base) {
     return DirentFromStats;
 }(Base);
 DirentFromStats.constants = _constantsts.default;
-DirentFromStats.DirentStats = Base;
+DirentFromStats.AnyStats = Base;
 /* CJS INTEROP */ if (exports.__esModule && exports.default) { try { Object.defineProperty(exports.default, '__esModule', { value: true }); for (var key in exports) { exports.default[key] = exports[key]; } } catch (_) {}; module.exports = exports.default; }
