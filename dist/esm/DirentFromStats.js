@@ -31,5 +31,5 @@ let DirentFromStats = class DirentFromStats extends Base {
     }
 };
 DirentFromStats.constants = constants;
-DirentFromStats.DirentStats = Base;
+DirentFromStats.AnyStats = Base;
 export { DirentFromStats as default };

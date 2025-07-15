@@ -29,10 +29,9 @@
   "types": "dist/cjs/index.d.cts",
   "scripts": {
     "build": "tsds build",
-    "deploy": "tsds deploy",
-    "format": "biome check --write --unsafe src/ test/",
-    "test": "tsds test:node --no-timeouts",
-    "test:engines": "nvu engines npm test",
+    "format": "biome check --write --unsafe",
+    "test": "mocha --no-timeouts test/**/*.test.*",
+    "test:engines": "nvu engines tsds test:node --no-timeouts",
     "version": "tsds version"
   },
   "dependencies": {
