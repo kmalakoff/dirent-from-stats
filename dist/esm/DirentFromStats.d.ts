@@ -1,5 +1,5 @@
 declare const Base: any;
-import type { DirentStats } from './types.ts';
+import type { AnyStats } from './types.ts';
 export default class DirentFromStats extends Base {
     static constants: {
         UV_DIRENT_UNKNOWN: any;
@@ -11,8 +11,8 @@ export default class DirentFromStats extends Base {
         UV_DIRENT_CHAR: any;
         UV_DIRENT_BLOCK: any;
     };
-    static DirentStats: any;
-    constructor(name: string, stats: DirentStats);
+    static AnyStats: any;
+    constructor(name: string, stats: AnyStats);
     isDirectory(): any;
     isFile(): any;
     isBlockDevice(): any;

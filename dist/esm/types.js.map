@@ -1,1 +1,1 @@
-{"version":3,"sources":["/Users/kevin/Dev/_archive/@unmaintained/dirent-from-stats/src/types.ts"],"sourcesContent":["import type { BigIntStats, Dirent, Stats } from 'fs';\n\nexport type DirentStats = Stats | BigIntStats | Dirent;\n"],"names":[],"mappings":"AAEA,WAAuD"}
+{"version":3,"sources":["/Users/kevin/Dev/OpenSource/unmaintained/dirent-from-stats/src/types.ts"],"sourcesContent":["import type { BigIntStats, Dirent, Stats } from 'fs';\n\nexport type AnyStats = Stats | BigIntStats | Dirent;\n"],"names":[],"mappings":"AAEA,WAAoD"}
