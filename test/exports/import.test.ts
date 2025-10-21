@@ -1,5 +1,4 @@
 import assert from 'assert';
-// @ts-ignore
 import { constants, DirentBase, DirentFromStats } from 'dirent-from-stats';
 
 describe('exports .mjs', () => {

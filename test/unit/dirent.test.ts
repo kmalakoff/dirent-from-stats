@@ -1,6 +1,5 @@
 import assert from 'assert';
 import each from 'async-each';
-// @ts-ignore
 import { constants, DirentBase, DirentFromStats } from 'dirent-from-stats';
 import fs from 'fs';
 import generate from 'fs-generate';
