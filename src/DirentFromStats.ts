@@ -5,13 +5,13 @@ import DirentBase from './DirentBase.ts';
 const kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
 const Base = fs.Dirent || DirentBase;
 
-import type { DirentStats } from './types.ts';
+import type { AnyStats } from './types.ts';
 
 export default class DirentFromStats extends Base {
   static constants = constants;
-  static DirentStats = Base;
+  static AnyStats = Base;
 
-  constructor(name: string, stats: DirentStats) {
+  constructor(name: string, stats: AnyStats) {
     super(name);
     this[kStats] = stats;
   }
