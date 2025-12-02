@@ -1,1 +1,1 @@
-ignores: ["dirent-from-stats", "depcheck", "ts-dev-stack", "@types/*"]
+ignores: ["node-version-use", "ts-dev-stack", "@biomejs/biome", "dirent-from-stats", "depcheck", "ts-dev-stack", "@types/*"]
