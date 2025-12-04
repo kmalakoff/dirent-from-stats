@@ -47,9 +47,9 @@
     "@types/node": "*",
     "async-each": "*",
     "fs-generate": "*",
+    "fs-remove-compat": "*",
     "fs-stats-spys": "*",
     "node-version-use": "*",
-    "rimraf2": "*",
     "ts-dev-stack": "*",
     "tsds-config": "*"
   },
