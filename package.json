@@ -47,8 +47,8 @@
     "@types/node": "^25.0.1",
     "async-each": "^1.0.6",
     "fs-generate": "^1.10.9",
-    "fs-remove-compat": "^0.2.2",
-    "fs-stats-spys": "^1.2.8",
+    "fs-remove-compat": "^0.2.3",
+    "fs-stats-spys": "^1.2.9",
     "node-version-use": "^2.1.5",
     "ts-dev-stack": "^1.21.3",
     "tsds-config": "^0.2.1"
