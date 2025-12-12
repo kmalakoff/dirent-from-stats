@@ -9,8 +9,8 @@ import path from 'path';
 import url from 'url';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-var TEST_DIR = path.resolve(path.join(__dirname, '..', '..', '.tmp', 'test'));
-var STRUCTURE = {
+const TEST_DIR = path.resolve(path.join(__dirname, '..', '..', '.tmp', 'test'));
+const STRUCTURE = {
   file1: 'a',
   file2: 'b',
   dir1: null,
@@ -41,7 +41,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should load dirents', (done) => {
-    var spys = statsSpys();
+    const spys = statsSpys();
 
     fs.readdir(TEST_DIR, (err, names) => {
       assert.ok(!err);
@@ -49,8 +49,8 @@ describe('DirentFromStats', () => {
       each(names, create.bind(null, TEST_DIR), (err, dirents) => {
         assert.ok(!err);
 
-        for (var index in dirents) {
-          var dirent = dirents[index];
+        for (const index in dirents) {
+          const dirent = dirents[index];
           spys(dirent);
           assert.ok(fs.Dirent || dirent instanceof DirentBase);
           assert.ok(!fs.Dirent || dirent instanceof fs.Dirent);
@@ -66,7 +66,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_TEST_DIR', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_TEST_DIR);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_TEST_DIR);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), true);
     assert.equal(dirent.isFile(), false);
@@ -78,7 +78,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_FILE', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_FILE);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_FILE);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), true);
@@ -90,7 +90,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_BLOCK', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_BLOCK);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_BLOCK);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
@@ -102,7 +102,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_CHAR', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_CHAR);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_CHAR);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
@@ -114,7 +114,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_LINK', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_LINK);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_LINK);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
@@ -126,7 +126,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_FIFO', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_FIFO);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_FIFO);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
@@ -138,7 +138,7 @@ describe('DirentFromStats', () => {
   });
 
   it('should create dirents by UV_DIRENT_SOCKET', () => {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_SOCKET);
+    const dirent = new DirentBase('name', constants.UV_DIRENT_SOCKET);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), false);
     assert.equal(dirent.isFile(), false);
