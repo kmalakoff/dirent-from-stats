@@ -34,7 +34,7 @@ describe('DirentFromStats', () => {
   });
   beforeEach((done) => {
     safeRm(TEST_DIR, () => {
-      generate(TEST_DIR, STRUCTURE, (): undefined => {
+      generate(TEST_DIR, STRUCTURE, (): void => {
         done();
       });
     });
