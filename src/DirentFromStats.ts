@@ -3,7 +3,7 @@ import constants from './constants.ts';
 import DirentBase from './DirentBase.ts';
 
 const kStats = typeof Symbol !== 'undefined' ? Symbol('stats') : 'stats';
-const Base = fs.Dirent || DirentBase;
+const Base = (fs.Dirent || DirentBase) as unknown as typeof DirentBase;
 
 import type { AnyStats } from './types.ts';
 
@@ -13,28 +13,28 @@ export default class DirentFromStats extends Base {
 
   constructor(name: string, stats: AnyStats) {
     super(name);
-    this[kStats] = stats;
+    (this as unknown as Record<symbol | string, unknown>)[kStats] = stats;
   }
 
   isDirectory() {
-    return this[kStats].isDirectory();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isDirectory();
   }
   isFile() {
-    return this[kStats].isFile();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isFile();
   }
   isBlockDevice() {
-    return this[kStats].isBlockDevice();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isBlockDevice();
   }
   isCharacterDevice() {
-    return this[kStats].isCharacterDevice();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isCharacterDevice();
   }
   isSymbolicLink() {
-    return this[kStats].isSymbolicLink();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isSymbolicLink();
   }
   isFIFO() {
-    return this[kStats].isFIFO();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isFIFO();
   }
   isSocket() {
-    return this[kStats].isSocket();
+    return ((this as unknown as Record<symbol | string, unknown>)[kStats] as AnyStats).isSocket();
   }
 }
