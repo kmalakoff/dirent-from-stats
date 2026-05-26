@@ -8,36 +8,36 @@ export default class DirentBase {
   static constants = constants;
   name: string;
 
-  constructor(name: string, type: string) {
+  constructor(name: string, type = '') {
     this.name = name;
-    this[kType] = type;
+    (this as unknown as Record<symbol | string, unknown>)[kType] = type;
   }
 
   isDirectory() {
-    return this[kType] === UV_DIRENT_TEST_DIR;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_TEST_DIR;
   }
 
   isFile() {
-    return this[kType] === UV_DIRENT_FILE;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_FILE;
   }
 
   isBlockDevice() {
-    return this[kType] === UV_DIRENT_BLOCK;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_BLOCK;
   }
 
   isCharacterDevice() {
-    return this[kType] === UV_DIRENT_CHAR;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_CHAR;
   }
 
   isSymbolicLink() {
-    return this[kType] === UV_DIRENT_LINK;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_LINK;
   }
 
   isFIFO() {
-    return this[kType] === UV_DIRENT_FIFO;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_FIFO;
   }
 
   isSocket() {
-    return this[kType] === UV_DIRENT_SOCKET;
+    return (this as unknown as Record<symbol | string, unknown>)[kType] === UV_DIRENT_SOCKET;
   }
 }
