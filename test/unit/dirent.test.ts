@@ -22,7 +22,7 @@ const STRUCTURE = {
   'dir3/filelink2': '~dir2/file1',
 };
 
-function create(root: string, name: string, callback: (err?: Error, result?: DirentFromStats) => void): void {
+function create(root: string, name: string, callback: (err?: Error | null, result?: DirentFromStats) => void): void {
   return fs.lstat(path.join(root, name), (err, stats) => {
     err ? callback(err) : callback(undefined, new DirentFromStats(name, stats));
   });
