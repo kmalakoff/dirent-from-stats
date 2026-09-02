@@ -10,7 +10,7 @@ var DirentFromStats = require('../..');
 var DirentBase = DirentFromStats.DirentBase;
 var constants = require('../../lib/constants');
 
-var DIR = path.resolve(path.join(__dirname, '..', 'data'));
+var TEST_DIR = path.resolve(path.join(__dirname, '..', '..', '.tmp', 'test'));
 var STRUCTURE = {
   file1: 'a',
   file2: 'b',
@@ -31,21 +31,21 @@ function create(root, name, callback) {
 
 describe('DirentFromStats', function () {
   after(function (done) {
-    rimraf(DIR, done);
+    rimraf(TEST_DIR, done);
   });
   beforeEach(function (done) {
-    rimraf(DIR, function () {
-      generate(DIR, STRUCTURE, done);
+    rimraf(TEST_DIR, function () {
+      generate(TEST_DIR, STRUCTURE, done);
     });
   });
 
   it('should load dirents', function (done) {
     var spys = statsSpys();
 
-    fs.readdir(DIR, function (err, names) {
+    fs.readdir(TEST_DIR, function (err, names) {
       assert.ok(!err);
 
-      each(names, create.bind(null, DIR), function (err, dirents) {
+      each(names, create.bind(null, TEST_DIR), function (err, dirents) {
         assert.ok(!err);
 
         for (var index in dirents) {
@@ -64,8 +64,8 @@ describe('DirentFromStats', function () {
     });
   });
 
-  it('should create dirents by UV_DIRENT_DIR', function () {
-    var dirent = new DirentBase('name', constants.UV_DIRENT_DIR);
+  it('should create dirents by UV_DIRENT_TEST_DIR', function () {
+    var dirent = new DirentBase('name', constants.UV_DIRENT_TEST_DIR);
     assert.equal(dirent.name, 'name');
     assert.equal(dirent.isDirectory(), true);
     assert.equal(dirent.isFile(), false);
