@@ -1,31 +1,22 @@
-## dirent-from-stats
+# dirent-from-stats
 
-Create fs.Dirents from fs.Stats for compatiblity on earlier versions of Node.js.
+Create `fs.Dirent` values from `fs.Stats` for compatibility with earlier Node.js
+versions.
 
 It will inherit from fs.Dirent if it exists; otherwise, it will create a new base Dirent class.
 
+```bash
+npm install dirent-from-stats
+```js
+
 ```
-var assert = require('assert');
-var DirentFromStats = require('dirent-from-stats');
+var DirentFromStats = require('dirent-from-stats').DirentFromStats;
 var fs = require('fs');
-var each = require('async-each');
+var path = require('path');
 
-var DirentBase = DirentFromStats.DirentBase;
-var TEST_DIR = path.resolve(path.join(__dirname, '..', '..', '.tmp', 'test'));
-
-function create(root, name, callback) {
-  return fs.lstat(path.join(root, name), function (err, stats) {
-    err ? callback(err) : callback(null, new DirentFromStats(name, stats));
-  });
-}
-
-fs.readdir(__dirname, function (err, names) {
-  each(names, create.bind(null, TEST_DIR), function (err, dirents) {
-    for (var index in dirents) {
-      assert.ok(dirents[index] instanceof DirentBase);
-      assert.ok(!fs.Dirent || dirents[index] instanceof fs.Dirent);
-    }
-  }
-}
-
+var stats = fs.lstatSync(__filename);
+var dirent = new DirentFromStats(path.basename(__filename), stats);
+console.log(dirent.isFile()); // true
 ```
+
+`DirentFromStats` also exports `DirentBase` and `constants`.
